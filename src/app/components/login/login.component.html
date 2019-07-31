@@ -1,0 +1,19 @@
+<div>
+<form [formGroup]="loginForm" (submit)="login()">
+    <div>
+        <mat-form-field >
+            <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field >
+            <input class='input' type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+    </div>
+    <div>
+        <button [disabled]="loginForm.invalid"  color="primary" mat-flat-button type ="submit">Admin Login</button>
+        <h1 *ngIf="message">{{message}} </h1>
+    </div>
+
+</form>
+</div>

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <div class="nav-row">
+
+      <ng-container *ngIf="(auth.$login | async)">
+        <ng-container *ngIf="(auth.$role | async) !== 'ADMIN'">
+            <a mat-button routerLink="/profile">Profile</a>
+        </ng-container>
+
+        <ng-container *ngIf="(auth.$role | async) === 'ADMIN'">
+            <a mat-button routerLink="/cars">Cars</a>
+            <a mat-button routerLink="/users">Users</a>
+        </ng-container>
+
+        <a mat-button (click)="logout()">Logout</a>
+      </ng-container>
+      <ng-container  *ngIf="!(auth.$login | async)">
+              <a mat-button (click)="login()">Facebook Login</a>
+      </ng-container>
+  </div>
+</mat-toolbar>
