@@ -1,1 +1,99 @@
-<p>profile works!</p>
+<ng-container *ngIf="user">
+    <div class="middle">
+        <div>
+            <img src="{{user.photoUrl}}" alt="Me" height="42" width="42">
+        </div>
+        <div>
+            <span>Name: {{user.name}}</span>
+        </div>
+        <div>
+            <span>Email: {{user.email}}</span>
+        </div>
+    </div>
+    <div class="middle" *ngIf="user.car">
+        <h2>Car:</h2>
+
+            <div>
+                    Name: {{user.car[0].name}}
+            </div>
+            <div>
+                    Plate Number: {{user.car[0].plateNumber}}
+            </div>
+            <div>
+                    CC: {{user.car[0].cc}}
+            </div>
+            <div>
+                    Fuel Type: {{user.car[0].fuelType}}
+            </div>
+        <div class="marg">
+                <form [formGroup]="tripForm" (submit)="addTrip()">
+                        <div>
+                            <mat-form-field >
+                                <input matInput placeholder="distance" formControlName="distance">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-checkbox formControlName="private" matInput>Private</mat-checkbox>
+                        </div>
+                        <div>
+                            <button [disabled]="tripForm.invalid"  color="primary" mat-flat-button type ="submit">Add</button>
+                        </div>
+                    
+                </form>
+        </div>
+        <div class='formdiv'>
+                <table mat-table [dataSource]="user.car[0].trips" class="mat-elevation-z8">
+                        <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="distance">
+                        <th mat-header-cell *matHeaderCellDef> Distance </th>
+                        <td mat-cell *matCellDef="let element"> {{element.distance}} </td>
+                        </ng-container>
+                    
+                        <ng-container matColumnDef="private">
+                        <th mat-header-cell *matHeaderCellDef> Private </th>
+                        <td mat-cell *matCellDef="let element"> {{element.private}}</td>
+                        </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedTripColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedTripColumns;"></tr>
+                 </table>
+            </div>
+    </div>
+    <div class='formdiv' *ngIf="user.aviableCars">
+            <table mat-table [dataSource]="user.aviableCars" class="mat-elevation-z8">
+                    <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="plateNumber">
+                    <th mat-header-cell *matHeaderCellDef> Plate Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.plateNumber}} </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="cc">
+                    <th mat-header-cell *matHeaderCellDef> CC </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cc}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fuelType">
+                    <th mat-header-cell *matHeaderCellDef> Fuel Type </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fuelType}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef> Actions </th>
+                            <td mat-cell *matCellDef="let element">
+                                <button  color="primary" mat-flat-button type="button" (click)="assign(element._id)">Assign</button>
+                            </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+        </div>
+</ng-container>

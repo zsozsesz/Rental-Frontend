@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
@@ -56,6 +57,8 @@ export function provideConfig() {
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatCheckboxModule,
   ],
   providers: [
     {
