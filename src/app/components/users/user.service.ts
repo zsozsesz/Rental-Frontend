@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getSelf() {
+  getProfileData() {
       return this.http.get('/user/self');
   }
   assign(id) {

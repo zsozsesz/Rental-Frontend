@@ -32,7 +32,12 @@ export class CarsComponent implements OnInit {
 
   addCar() {
     this.carsService.addCar(this.carForm.value).subscribe(res => {
-      this.cars = null;
+      this.carForm.setValue({
+        name: '',
+        plateNumber: '',
+        cc: '',
+        fuelType: ''
+      });
       this.findAll();
     });
   }

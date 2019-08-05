@@ -24,14 +24,12 @@ export class ProfileComponent implements OnInit {
   }
   assign(id) {
     this.userServie.assign(id).subscribe(res => {
-      this.user = null;
       this.getProfile();
     });
   }
 
   addTrip() {
       this.userServie.addTrip(this.user.car[0]._id, this.tripForm.value).subscribe(resp => {
-        this.user = null;
         this.tripForm.setValue({
           distance: '',
           private: ''
@@ -42,7 +40,7 @@ export class ProfileComponent implements OnInit {
 
 
   getProfile() {
-    this.userServie.getSelf().subscribe(resp => {
+    this.userServie.getProfileData().subscribe(resp => {
       this.user = resp;
    });
   }
